@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.27.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/assets/css/style.css">
+    <link rel="stylesheet" href="../static/assets/css/service.css">
+    <title>Welcome message| Financetrustonlinebank</title>
+
+    <style>
+         .logincontiner{
+            margin-top: -5%;
+            background-color: whitesmoke;
+        }
+        .section2{
+            margin-top: 10%;
+            margin-left: 30%;
+            width: 30%;
+            height: 20rem;
+        }
+        .card{
+            width: 50%;
+            height: 30rem;
+        }
+        .card h1{
+            font-size: 30px;
+            color: black;
+            font-weight: 800;
+        }
+        .card h3{
+            margin-top: 5%;
+            font-size: 25px;
+            color: black;
+        }
+        .msg{
+            margin-top: 3%;
+            text-align: center;
+            width: 100%;
+            font-size: 25px;
+        }
+        .card h2{
+            margin-top: 6%;
+            font-size: 25px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    {% include "nav.html" %}
+
+    <div class="container section2">
+        <div class="logincontiner card">
+                <div class="logologin">               
+                     <i class='bx bxl-bitcoin' ></i> <h1 class="title">Financetrustonlinebank</h1>
+                </div>
+<h1>Application Received</h1>
+
+<h3>Success!!!</h3>
+
+<div class="msg">
+    Please kindly await 1-2 bussiness working day to enable us process your Application, We will send you an email with your 10 digit account number 
+
+</div>
+
+<h2>Financetrustonlinebank</h2>
+<a href="./">
+<button class="btn">Go Back</button>
+</a>
+        </div>
+
+    </div>
+    <br><br><br><br><br> <br>
+
+
+    {% include "footer.html" %}
+
+   
+    <script src="../static/assets/js/script.js"></script>
+</body>
+</html>

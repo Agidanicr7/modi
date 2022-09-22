@@ -1,0 +1,91 @@
+@import 
+url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.sign_in_body{
+	padding: 10px;
+	background-image: url(../images/winding-tree-towers-over-landscape.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+body{
+	background-color: whitesmoke;
+}
+
+form h3{
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+form a{
+	color: rgba(0, 0, 255, 0.6);
+}
+
+a:hover{
+	color: red;
+}
+
+form{
+	width: 50%;
+	margin: auto;
+	height: 400px;
+	background-color: rgba(0, 0, 3, 0.11);
+	padding: 12px; 
+}
+
+label{
+	color: white;
+}
+
+input[type=email]{
+	width: 100%;
+	height: 35px;
+	outline: none;
+	padding-left: 10px;
+	margin-top: 5px;
+}
+input[type=password]{
+	width: 100%;
+	height: 35px;
+	outline: none;
+	padding-left: 10px;
+	margin-top: 5px;
+}
+
+input[type=submit]{
+	width: 100%;
+	height: 40px;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	outline: none;
+	border: none;
+	margin-bottom: 20px;
+}
+
+input[type=password]:hover{
+	border: 2px solid blue;
+	box-shadow: 1px 2px 2px rgba(0, 0, 255, 0.6);
+}
+input[type=email]:hover{
+	border: 2px solid blue;
+	box-shadow: 1px 2px 2px rgba(0, 0, 255, 0.6);
+}
+input[type=text]:hover{
+	border: 2px solid blue;
+	box-shadow: 1px 2px 2px rgba(0, 0, 255, 0.6);
+}
+
+@media screen and (max-width: 900px){
+	form{
+		width: 100%;
+	}
+}

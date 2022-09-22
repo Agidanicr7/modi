@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.27.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/assets/css/modal.css">
+    <style>
+        body{
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+    <div id="app" class="md:flex antialiased">
+        <aside class="w-full md:h-screen md:w-64 bg-gray-900 md:flex md:flex-col">
+            <header class="border-b border-solid border-gray-800 flex-grow">
+                <h1 class="py-6 px-4 text-gray-100 text-base font-medium">Financetrustonlinebank</h1>
+            </header>
+            <nav class="overflow-y-auto h-full flex-grow">
+              <header>
+                  <span class="text-xs text-gray-500 block py-6 px-6">MENU</span>
+              </header>
+              <ul class="font-medium px-4 text-left">
+                  <li class="text-gray-100">
+                      <button onclick="transfer()" class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-600 w-full">Fund Trasfer</button>
+                      <a href="#my-modal-6"><button  v-on:click="select('performance')" class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-600 w-full">Bank Card</button></a>
+                      <button onclick="apply()"     class=" rounded text-sm block py-3 px-6 hover:bg-blue-600 w-full text-left">Apply for loan</button>
+                      
+                      <button href="#performance" v-on:click="select('performance')" class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-600 w-full">Transcations History</button>
+                     <a href="#my-modal-7"> <button  v-on:click="select('new')" class="rounded text-sm block py-3 px-6 hover:bg-blue-600 w-full text-left">Payments</button></a>
+                      <button  onclick="profile()"class="rounded text-sm block py-3 px-6 hover:bg-blue-600 w-full text-left">Profile</button>
+                      <button href="#performance" v-on:click="select('new')" class="rounded text-sm block py-3 px-6 hover:bg-blue-600 w-full text-left">Logout</button>
+  
+                  </li>
+              </ul>
+          </nav>
+       
+              
+            <section id="user" class="p-4 border-t border-solid border-gray-800">
+                <div class="flex">
+                    <!-- <img src="http://preview.janlosert.com/static/media/a07.f7e8bebd.jpg" class="rounded-full h-10" alt=""> -->
+                    <div class="flex flex-col p-2">
+                        <span class="text-white pb-1">{{current_user.Firstname}}</span>
+                        <span class="text-xs text-gray-500">{{current_user.account_type}}</span>
+                    </div>
+                </div>
+            </section>
+    
+            <footer class="p-4 border-t border-solid border-gray-800">
+                <h4 class="pb-2 text-gray-100 text-sm">Financetrustonlinebank. 2018</h4>
+                <p class="text-gray-600 text-xs leading-normal">
+                    Take Control of your Finances
+
+                    You can make a positive difference this year by resolving to focus on improving your financial health.</p>
+            </footer>
+        </aside>
+        
+        <main class="bg-gray-100 h-screen w-full overflow-y-auto">
+            <section v-if="active === 'performance'" id="performance">
+                <header class="border-b border-solid border-gray-300 bg-white">
+                    <h2 class="p-6">Hi {{current_user.Firstname}}</h2>
+                </header>
+                <section class="m-4 bg-white border border-gray-300 border-solid rounded shadow">
+                    <header class="border-b border-solid border-gray-300 p-4 text-lg font-medium">
+                        Account Overview
+                    </header>
+                    <section class=" flex flex-row flex-wrap items-center text-center border-b border-solid border-gray-300">
+                        <div class="p-4 w-full sm:w-1/2 lg:w-1/4 border-b border-solid border-gray-300 md:border-b-0 sm:border-r">
+                            <span class="text-xs font-medium text-gray-500 uppercase">Current Account</span>
+                            <div class="py-4 flex items-center justify-center text-center">
+                            
+                                <span class="mr-2 text-xl">Account Number</span>
+                                <span class="mr-4 text-3xl">{{current_user.account_number}}</span> 
+                            </div>
+                        </div>
+                        <div class="p-4 w-full sm:w-1/2 lg:w-1/4 border-b border-solid border-gray-300 md:border-b-0 sm:border-r">
+                            <span class="text-xs font-medium text-gray-500 uppercase"></span>
+                            <span class="text-xs font-medium text-gray-500 uppercase">My Balance</span>
+                            <div class="py-4 flex items-center justify-center text-center">
+                              
+                                <span class="mr-4 text-3xl">{{current_user.Book_balance}}</span>
+                                
+                            </div>
+                        </div>
+                        <div class="p-4 w-full sm:w-1/2 lg:w-1/4 border-b border-solid border-gray-300 md:border-b-0 sm:border-r">
+                            <span class="text-xs font-medium text-gray-500 uppercase">Loan Limit</span>
+                            <div class="py-4 flex items-center justify-center text-center">
+                                <span class="mr-4 text-3xl">{{current_user.loan_limit}}</span>
+                            </div>
+                        </div>
+                        <div class="p-4 w-full sm:w-1/2 lg:w-1/4 border-b border-solid border-gray-300 md:border-b-0 sm:border-r">
+                            <span class="text-xs font-medium text-gray-500 uppercase">Card Limit</span>
+                            <div class="py-4 flex items-center justify-center text-center">
+                                <span class="mr-4 text-3xl">{{current_user.card_limit}}</span>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="chart" class="p-4">
+            
+                <div class="row">
+                    <div class="column">
+                        <div class="card w-96 bg-base-100 shadow-xl h-96">
+                            <figure class="px-10 pt-10">
+                              <img src="../static/assets/images/undraw_online_transactions_-02-ka.svg" alt="Shoes" class="rounded-xl" />
+                            </figure>
+                            <div class="card-body items-center text-center">
+                              <h2 class="card-title">Wire Transfer</h2>
+                            
+                              <div class="card-actions">
+                                <a href="#my-modal-2" class="btn">Proceed</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="column">
+                        <div class="card w-96 bg-base-100 shadow-xl h-96">
+                            <figure class="px-10 pt-10">
+                              <img src="../static/assets/images/undraw_vault_re_s4my.svg" alt="Shoes" class="rounded-xl" />
+                            </figure>
+                            <div class="card-body items-center text-center">
+                              <h2 class="card-title">Local Bank Transfer</h2>
+                              <div class="card-actions">
+                                <a href="#my-modal-3" class="btn">Proceed</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="column">
+                        <div class="card w-96 bg-base-100 shadow-xl h-96">
+                            <figure class="px-10 pt-10 h-56">
+                              <img  src="../static/assets/images/undraw_real_time_collaboration_c62i.svg" alt="Shoes" class="rounded-xl" />
+                            </figure>
+                            <div class="card-body items-center text-center">
+                              <h2 class="card-title">Same Bank Transfer</h2>
+                              <div class="card-actions">
+                                <a href="#my-modal-4" class="btn">Proceed</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+               
+                    <!-- The button to open modal -->
+
+<!-- Put this part before </body> tag -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% include "modals.html" %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    const d = new Date("October 13, 2014 11:13:00");
+document.getElementById("demo").innerHTML = d;
+
+    
+</script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="../static/js/dash.js"></script>
+    <script src="../static/js/modal.js"></script>
+    <script src="../static/js/api.js"></script>
+    </body>
+  
+    
+    </html>

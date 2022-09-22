@@ -1,0 +1,74 @@
+.spacex{
+    width: 50%;
+    height: 53rem;
+    margin-left: 30%;
+    margin-top: 5%;
+    box-shadow: 5px 10px;
+   
+}
+form{
+    width: 100%;
+}
+input, select{
+    width: 100%;
+    height: 4rem;
+    margin-top: 4%;
+    border: 2px solid black;
+    margin-bottom: 2%;
+}
+textarea{
+    width: 100%;
+    height: 4rem;
+    margin-top: 4%;
+    border: 2px solid black;
+    margin-bottom: 2%;
+}
+label{
+   font-size: 20px;
+    margin-top: 4%;
+    color: black;
+}
+span{
+    color: red;
+}
+.spacex button{
+    width: 15%;
+    height: 4rem;
+    background-color:aqua;
+    font-size: 20px;
+    color: black;
+}
+.place{
+    font-size: 35px;
+    color: black;
+    text-align: center;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.column{
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-basis: 3;
+    padding: 0.75em;
+}
+.columns{
+    display: flex;
+    flex-direction: row;
+  }
+.signinbtn{
+    width: 50%;
+    height: 3rem;
+    background-color:  #070d2b;
+    color: whitesmoke;
+}
+tr{
+    border: 2px solid black;
+    
+
+}
+th, td{ padding-left: 25px;
+    color: black;
+    border:  2px solid black;
+}
