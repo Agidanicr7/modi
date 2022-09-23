@@ -329,7 +329,7 @@ box-shadow: 5px 10px #888888;
   .delete{
     background-color: blue;
   }
-
+ 
   @media only screen and (max-width: 767px) {
     .previous_btn {
       left: 50px;
@@ -354,8 +354,68 @@ box-shadow: 5px 10px #888888;
 
 
   @media screen and (max-width: 640px) {
+    body{
+      overflow-x: hidden;
+    }
     .row{
         display: flex;
         flex-direction: column;
     }
+    .slide img{
+      width: 100%;
+      height: 50%;
+      margin-left: 0
+    
+    }
+    .previous_btn , .next_btn{
+      display: none;
+    }
+    .directional_nav, .slide_buttons{
+      display: none;
+    }
+    .mid{
+      margin-top: 25%;
+    }
+    .slider{
+      height: 20rem;
+    }
+    .column{
+      margin-bottom: 15%;
+    }
+    .hero img{
+      margin-left: 0;
+     }
+     .hero{
+      margin-top: 10%;
+     }
+     .hero h1{
+      font-size: 25px;
+      width: 100%;
+      margin-left: 0;
+  }
+  .hero p{
+    margin-left: 0;
+      width: 100%;
+  }
+  .hero img{
+    margin-left: 0;
+  }
+  .midhero{
+      margin-left: 0;
+      width: 100%;
+  }
+  .cont .title{
+  font-size: 30px;
+  width: 100%;
+  margin-left: 0;
+  }
+  .cont{
+    box-shadow: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .conbody h3{
+    width: 150%;
+    margin-left: 0;
+  }
   }

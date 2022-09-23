@@ -72,3 +72,25 @@ th, td{ padding-left: 25px;
     color: black;
     border:  2px solid black;
 }
+
+@media screen and (max-width: 640px) {
+    .spacex{
+        margin-left: 0;
+        width: 100%;
+    }
+    form button{
+        width: 50%;
+    }
+    .row{
+        display: flex;
+        flex-direction: column;
+    }
+    #chart{
+        margin-left: 0;
+        width: 100%;
+    }
+    .card{
+        width: 100%;
+    }
+    
+}

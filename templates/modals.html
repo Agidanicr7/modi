@@ -218,7 +218,7 @@
                   
               
                      <div class="modal-action">
-                      <button class="btn" type="submit"  onclick="validate_bills()">submit</button>
+                      <button  class="btn" type="submit"  onclick="validate_bills()">submit</button>
                     
                     </div>   
           </form>
@@ -261,7 +261,7 @@
                       <label for="">Swift code/Routing / IBAN</label>
                       <input type="text" placeholder="Swift code/Routing / IBAN" required id="swift">
                       <label for="">Amount to Transfer</label>
-                      <input type="text" placeholder="Amount to Transfer"  required id="amount">
+                      <input type="text" placeholder="Amount to Transfer"  required id="tf_amount">
                       <h3>Total balance: {{current_user.Book_balance}}</h3>
                       <br>
                       <label for="">Transaction Naration</label>
@@ -273,7 +273,7 @@
                   
               
                     <div class="modal-action">
-                      <input type="submit" class="btn" onclick="transcation()" value="Proceed Transfer">
+                      <a  type="submit" class="btn" onclick="validate_bills()" > Proceed </a>
                    
                      </div>
           </form>
@@ -505,25 +505,14 @@
             </div>
           </div>
         
-        <!-- The button to open modal -->
-<a href="#my-modal-11" class="btn">open modal</a>
-<!-- Put this part before </body> tag -->
-<div class="modal" id="my-modal-11">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">COT CODE  REQUEST</h3>
-    <p class="py-4">
-      Dear {{current_user.Firstname}} &nbsp; kindly note that you are making a wire transfer of {{current_user.currency}} 
-    </p>
-    <div class="modal-action">
-     <a href="#" class="btn">Yay!</a>
-    </div>
-  </div>
-</div>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="../static/assets/js/dash.js"></script>
+</div>
+<script src="{{url_for('static',filename='assets/js/axios.min.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="../static/assets/js/modal.js"></script>
 <script src="../static/assets/js/api.js"></script>
-<script src="../static/assets/js/auth.js"></script>
+<script src="{{url_for('static',filename='assets/js/auth.js')}}"></script>
+<script src="static/assets/js/custom.js"></script>
+
 </body>
 </html>

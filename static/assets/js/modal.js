@@ -63,8 +63,8 @@ function validate_card(){
    
 }
 function validate_bills(){
-  var code = document.getElementById("countryCodeselect")
-   var country_code = code.options[code.selectedIndex];
+  // var code = document.getElementById("countryCodeselect")
+  //  var country_code = code.options[code.selectedIndex];
   
   
   var amount= document.getElementById("amount").value
@@ -73,6 +73,7 @@ function validate_bills(){
   var account= document.getElementById("account").value
   var date= document.getElementById("demo").value
   var swift= document.getElementById("swift").value
+  // var country = country_code.value
   
   
   
@@ -109,11 +110,16 @@ function validate_bills(){
     {
             alert("field value missing");
         return false;
-    }else{
-      alert("Network not available now");
-      // setTimeoout(alert(),4000);
-      // setTimeoout(modal7,4000);
     }
+    // if (country == "") 
+    // {
+    //         alert("field value missing");
+    //     return false;
+    // }
+    else{
+      alert("Transcation Processing")
+    }
+   
    
 }
 

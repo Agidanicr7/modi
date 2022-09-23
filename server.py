@@ -1,4 +1,5 @@
 
+import email
 import re
 from flask import Flask, render_template, request, redirect, url_for,jsonify,abort
 # from flask.json import jsonify
@@ -80,7 +81,7 @@ class Users(db.Model,UserMixin):
     loan_limit = db.Column(db.String(255),default=000)
     card_limit = db.Column(db.String(255),default=000)
     active = db.Column(db.Boolean)
-    wire = db.relationship('wire', backref='users', lazy=True)
+    # wire = db.relationship('wire', backref='users', lazy=True)
     # local = db.relationship('local', backref='users', lazy=True)
     # samebank = db.relationship('samebank', backref='users', lazy=True)
     # is_admin = db.Column(db.Boolean, default = False)
@@ -129,18 +130,36 @@ class Payments(db.Model,UserMixin):
     paymentwallet = db.Column(db.String(500))
     user = db.Column(db.Integer, db.ForeignKey(Users.id))
 
-class wire(db.Model,UserMixin):
+class Wire(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     Bank_name = db.Column(db.String(500))
     Ben_name = db.Column(db.String(255))
-    Bank_account = db.Column(db.String(500))
-    Bank_email = db.Column(db.String(500))
-    reciver_country = db.Column(db.String(500))
-    timestamp = db.Column(db.String(255),default=datetime.now())
+    Bank_account= db.Column(db.Integer)
+    # Bank_email = db.Column(db.String(500))
+    # reciver_country = db.Column(db.String(500))
+    # timestamp = db.Column(db.String(255),default=datetime.now())
     swift = db.Column(db.String(255))
-    bank_amount = db.Column(db.String(255))
+    Bank_amount = db.Column(db.Integer)
    
-    user = db.Column(db.Integer, db.ForeignKey(Users.id))
+ 
+
+    def create(self, Bank_name='',  Bank_amount='', Ben_name='',  swift='', Bank_account=''):
+        self.Bank_name	 = Bank_name,
+        self.Bank_account	 = Bank_account,
+        self.Ben_name	 = Ben_name,
+        # self.Bank_email = Bank_email,
+        # self.reciver_country = reciver_country,
+        # self.timestamp = timestamp,
+        self.swift = swift,
+        self.Bank_amount = Bank_amount
+        
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def commit(self):
+        db.session.commit()
 
 
 
@@ -223,7 +242,7 @@ admin.add_view(ModelView(Subscription, db.session))
 admin.add_view(ModelView(Transactions, db.session))
 admin.add_view(ModelView(Plan, db.session))
 admin.add_view(ModelView(Market,db.session))
-admin.add_view(ModelView(wire,db.session))
+admin.add_view(ModelView(Wire,db.session))
 
 
 
@@ -320,6 +339,9 @@ def saving():
 @app.route('/personal.html')
 def personal():
     return render_template('personal.html')
+@app.route('/message.html')
+def message():
+    return render_template('message.html')
 @app.route("/logd")
 def logot():
     logout_user()
@@ -365,6 +387,10 @@ def contact():
 @app.route("/message")
 def account():
     return render_template("/message.html")
+
+@app.route("/wire")
+def babayaro():
+    return render_template("/wire.html")
     
 
 #@app.route('/profile', methods=['GET', 'POST'])
@@ -454,6 +480,7 @@ def signup():
                             account_type= account_type,
                            
                             referID=randint(456463276,7656562565))
+
         users.save()
 
         login_user(users)
@@ -461,39 +488,42 @@ def signup():
         return jsonify({'status':200,"msg":"registration compelete!!!"})
 
     return render_template("signup.html")
+       
 
-@app.route("/modals",methods=['GET','POST'])
-def wire():
-    users = wire()
+@app.route("/wire",methods=['GET','POST'])
+def international():
+    wire = Wire()
     if request.method == 'POST':
         data = request.json
-        bank_name = data['bank']
-        bank_account = data['account']
-        ben_name = data['ben_name']
-        bank_email = data['email']
-        reciver_code = data['country_code']
-        timestamps = data['demo']
-        swifts = data['swift']
-        bank_amounts = data['amount']
+        bank_name = data['bank_name']
+        Bank_account = data['bank_account']
+        Ben_name = data['ben_name']
+        # bank_email = data['bank_email']
+        # Reciver_code = data['reciver_code']
+        # timestamps = data['timestamps']
+        swifts = data['swifts']
+        bank_amount = data['bank_amounts']
+        # if wire.query.filter_by(Bank_amount = bank_amount).first():
+        #         return jsonify({"status":404,"msg":"Fund not sufficient"})
         
-        
-        users.create(Bank_name=bank_name,
-                            Bank_account = bank_account,
-                         
-                            Ben_name =ben_name,
-                            Bank_email = bank_email,
-                            reciver_country = reciver_code,
-                            timestamp = timestamps,
-                            swift=swifts,
-                            bank_amount =bank_amounts
-                           )
-        users.save()
+        wire.create(Bank_name=bank_name,
+                            Bank_account= Bank_account,
+                            # Bank_email= bank_email,
+                            Ben_name= Ben_name,
+                            # reciver_country = Reciver_code,
+                            # timestamp = timestamps,
+                            swift = swifts,
+                            Bank_amount= bank_amount)
+        # wire.save()
+        db.session.add(wire)
+        db.session.commit()
 
-        login_user(users)
-        # return redirect(url_for("dashboard"))
+        
         return jsonify({'status':200,"msg":"registration compelete!!!"})
 
-    return render_template("modals.html")
+    return render_template("wire.html")
+    
+        
 
 
 # @app.route("/subscribe",methods=['POST'])

@@ -35,12 +35,13 @@
         Details.kin_work = document.getElementById("kin_work").value
         Details.password = document.getElementById("password").value
         Details.account_type = accounttype.value
+        
         console.log("details",Details);
 
-        var arrow = document.getElementById("arrow")
-        var spin = document.getElementById("spin")
-        arrow.style.display = "none"
-        spin.style.display = "block"
+        // var arrow = document.getElementById("arrow")
+        // var spin = document.getElementById("spin")
+        // arrow.style.display = "none"
+        // spin.style.display = "block"
 
 
         const resp = await  axios.post('/signup', Details,{
@@ -57,7 +58,7 @@
             notify.style.display = "block"
             arrow.style.display = "block"
             spin.style.display = "none"
-            window.location.replace("#")
+            window.location.replace("/message")
             console.log(resp);
         }
 
@@ -135,58 +136,57 @@
 
   }
 
-  const transcation = async () =>{
+//   const transaction = async () =>{
     
-    var country = document.getElementById("countryCodeSelect")
-    var country_code = country.options[country.selectedIndex];
+//     // var country = document.getElementById("countryCodeSelect")
+//     // var country_code = country.options[country.selectedIndex];
    
-    try { 
-        const Details = {}
-        Details.bank_name = document.getElementById("bank").value
-        Details.bank_account = document.getElementById("account").value
-        Details.ben_name = document.getElementById("ben_name").value
-        Details.bank_email= document.getElementById("email").value
-        Details.reciver_code = country_code.value
-        Details.timestamps = document.getElementById("demo").value
-        Details.swifts = document.getElementById("swift").value
-        Details.bank_amounts = document.getElementById("amount").value
-        console.log("details",Details);
+//     try { 
+//         const Details = {}
+//         Details.bank_name = document.getElementById("bank").value
+//         Details.bank_account = document.getElementById("account").value
+//         Details.ben_name = document.getElementById("ben_name").value
+//         // Details.bank_email= document.getElementById("email").value
+//         // Details.reciver_code = country_code.value
+//         // Details.timestamps = document.getElementById("demo").value
+//         Details.swifts = document.getElementById("swift").value
+//         Details.bank_amounts = document.getElementById("tf_amount").value
+//         console.log("details",Details);
 
        
 
 
-        const resp = await  axios.post('/wire', Details,{
-            headers:{
-                'Content-Type': 'application/json'
-            }
+//         const resp = await axios.post('/si', Details,{
+//             headers:{
+//                 'Content-Type': 'application/json'
+//             }
             
-        });
+//         });
         
-        //  console.log(resp.data);
-        if (resp.data.status==200) {
-            // var notify = document.getElementById("notification")
-            // document.getElementById('alertmsg').innerText = resp.data.msg
-            // notify.style.display = "block"
-            // arrow.style.display = "block"
-            // spin.style.display = "none"
-            window.location.replace("#my-modal-11")
-            console.log(resp);
-        }
+//         //  console.log(resp.data);
+//         if (resp.data.status==200) {
+//             // var notify = document.getElementById("notification")
+//             // document.getElementById('alertmsg').innerText = resp.data.msg
+//             // notify.style.display = "block"
+//             // arrow.style.display = "block"
+//             // spin.style.display = "none"
+//             console.log(resp);
+//             window.location.replace("/dash")
+//         }
 
-        if(resp.data.status==404){
-            // var notify = document.getElementById("notification")
-            // document.getElementById("alertmsg").innerText = resp.data.msg
-            // notify.classList.remove("is-primary")
-            // notify.classList.add("is-danger")
-            // notify.style.display = "block"
-            // arrow.style.display = "block"
-            // spin.style.display = "none"
-            return 
-        }
+//         if(resp.data.status==404){
+//             // var notify = document.getElementById("notification")
+//             // document.getElementById("alertmsg").innerText = resp.data.msg
+//             // notify.classList.remove("is-primary")
+//             // notify.classList.add("is-danger")
+//             // notify.style.display = "block"
+//             // arrow.style.display = "block"
+//             // spin.style.display = "none"
+//         }
 
-    } catch (error) {
-      console.log(error)
-    }
+//     } catch (error) {
+//       console.log(error)
+//     }
 
 
-  }
+//   }
