@@ -27,7 +27,7 @@
         .section2{
             display: flex;
             flex-direction: column;
-            width: 100%;
+            width: 200%;
             align-items: center;
             
 
@@ -39,12 +39,12 @@
         }
         .card{
             display: flex;
-            width: 50%;
+            width: 200%;
             justify-content: center;
             align-items: center;
             padding: 50px;
-            margin: auto;
-            max-width: 960px;
+            margin-left: 25%;
+            max-width: 760px;
             border-radius: 10px;
             background-color: #4F46E5;
             box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -104,6 +104,15 @@
     .links{
         color: white;
     }
+    .conmo{
+        width: 100%;
+        height: 10rem;
+        background-color: grey;
+    }
+    .ment{
+        margin-left: 25%;
+    }
+    
 
     @media only screen and (max-width: 592px) {
         input{
@@ -123,27 +132,47 @@
         }
        
       } 
+      @media screen and (max-width: 640px) {
+        .section2,.card{
+            width: 100%;
+        }
+        .logincontiner , input{
+            width: 100%;
+        }
+        .section1{
+            margin-top: 5%;
+            height: 40rem;
+        }
+        .card{
+            margin-left: 0;
+        }
+        .section1 {
+          display: none;
+        }
+    }
     </style>
 </head>
 <body>
 
     {% include "nav.html" %}
-    {% include "chat.html" %}
 
+  
+<!-- 
+<section class="section1 py-24 flex items-center h-80 justify-center bg-green-800">
+    <div class="mx-auto max-w-[43rem]">
+      <div class="text-center">
+        <p class="text-3xl font-medium leading-8 text-white">Financetrustonlinebank</p>
+        <h1 class="w-1/2 mt-3 text-[3.5rem]  leading-[4rem] tracking-tight text-white ment">It gives me great pleasure to announce that there are still banks, like National Reliance Online, that continue to build a sense of security in this insecure world. Residents have the privilege of banking with a true community bank that has stuck to true, common sense, banking values.</h1>
+        <p class="mt-3 text-[3.5rem] leading-relaxed text-white">They can sleep soundly in the knowledge that they are banking with one of the strongest banks in the country</p>
+      </div>
+  
+      <!-- <div class="mt-6 flex items-center justify-center gap-4">
+        <a href="#" class="transform rounded-md bg-indigo-600/95 px-5 py-3 font-medium text-white transition-colors hover:bg-indigo-700">Get started for free</a>
+        <a href="#" class="transform rounded-md border border-slate-200 px-5 py-3 font-medium text-slate-900 transition-colors hover:bg-slate-50"> Request a demo </a>
+      </div> 
+    </div>
+  </section> -->
 
-    <!-- <div class="container">
-        <div class="box">
-            <div class="columns">
-                <div class="column">
-
-                </div>
-
-                <div class="column">
-
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <div class="container section2">
         <h1>Sign up</h1>
@@ -163,36 +192,37 @@
                             <button class="delete"></button>
                             <p id="alertmsg"></p>
                           </div>
+                <form action="">
                     <div class="formcontainer">
                         <div class="inputconatiner">
                             <i class='bx bx-user' ></i>
                             <label for="">FiIRST NAME</label>
-                            <input  type="text" id="fname" placeholder="Firstame">
+                            <input  type="text" id="fname" placeholder="Firstame" required>
                         </div>
                         <div class="inputconatiner">
                             <i class='bx bx-user'></i>
                             <label for="">LAST NAME</label>
-                            <input type="text" id="lname" placeholder="lastname">
+                            <input type="text" id="lname" placeholder="lastname" required>
                         </div>
                         <div class="inputconatiner">
                             <i class='bx bx-envelope'></i>
                             <label for="">EMAIL</label>
-                            <input type="text" id="email" placeholder="Email">
+                            <input type="text" id="email" placeholder="Email" required>
                         </div>
                         <div class="inputconatiner">
                             <i class='bx bx-phone' ></i>
                             <label for="">PHONE NUMBER</label>
-                            <input type="number" id="phone" placeholder="Phone number">
+                            <input type="number" id="phone" placeholder="Phone number" required>
                         </div>
                         <div class="inputconatiner">
                             <i class='bx bx-calender' ></i>
                             <label for="">DATE OF BIRTH</label>
-                            <input type="date" id="dob" placeholder="Date of Birth">
+                            <input type="date" id="dob" placeholder="Date of Birth" required>
                         </div>
                         <div class="inputconatiner">
                             <label for="">GENDER</label>
                             <div class="inputconatiner">
-                            <select name="gender" id="gender">
+                            <select name="gender" id="gender" required>
                                 <option>Sex</option>
 						<option value="Male">Male</option>
 						<option value="female">Female</option>
@@ -203,28 +233,28 @@
                         <div class="inputconatiner">
                             <i class='bx bx-address'></i>
                             <label for="">HOUSE ADDRESS</label>
-                            <input type="text" id="house_address" placeholder="House Address">
+                            <input type="text" id="house_address" placeholder="House Address" required>
                         </div>
                         <div class="inputconatiner">
                             <label for="">CITY</label>
-                            <input type="city" id="city" placeholder="city">
+                            <input type="city" id="city" placeholder="city" required>
                         </div>
                         <div class="inputconatiner">
                             <label for="">ZIP CODE</label>
-                            <input type="text" id="postal_code" placeholder="ZipCode/Postal">
+                            <input type="text" id="postal_code" placeholder="ZipCode/Postal" required>
                         </div>
                         <div class="inputconatiner">
                             <label for="">COUNTRY</label>
-                            <input type="text" id="country" placeholder="Country">
+                            <input type="text" id="country" placeholder="Country" required>
                         </div>
                         <div class="inputconatiner">
                             <label for="">STATE</label>
-                            <input type="text" id="state" placeholder="state">
+                            <input type="text" id="state" placeholder="state" required>
                         </div>
                         <div class="inputconatiner">
                             <label for="">CURRENCY</label>
                             <div class="inputconatiner">
-                            <select required id="currency">
+                            <select required id="currency" required>
                                 <option selected value="">Select Currency</option>
                                 <option value="USD">America (United States) Dollars – USD</option>
                                 <option value="AFN">Afghanistan Afghanis – AFN</option>
@@ -352,7 +382,7 @@
                     </div>
                         <div class="inputconatiner">
                             <label for="">NATIONAL ID</label>
-                            <input type="text" id="national_id" placeholder="SSN/National_ID">
+                            <input type="text" id="national_id" placeholder="SSN/National_ID" required>
                         </div>
                         <div class="inputconatiner">
                             <label for="">EMPLOYER ADDRESS</label>
@@ -361,7 +391,7 @@
                         <div class="inputconatiner">
                             <label for="">TYPE OF EMPLOYMENT</label>
                             <div class="inputconatiner">
-                            <select required id="employ_type">
+                            <select required id="employ_type" required>
                                 <option value="">Type of Employment</option>
                                 <option value="self Employed">Self Employed</option>  
                                 <option value="Public/Government Office">Public/Government Office</option>  
@@ -377,7 +407,7 @@
                         <div class="inputconatiner">
                             <label for="">SALARY RANGE</label>
                             <div class="inputconatiner"></div>
-                            <select required id="salary">
+                            <select required id="salary" required>
                                 <option value="">Select Salary Range</option>
                                 <option value="$100.00 - $500.00">$100.00 - $500.00</option> 
                                 <option value="$700.00 - $1,000.00">$700.00 - $1,000.00</option> 
@@ -403,12 +433,12 @@
                         <div class="inputconatiner">
                             <i class='bx bx-hide'></i>
                             <label for="">PASSWORD</label>
-                            <input type="password" id="password" placeholder="Password">
+                            <input type="password" id="password" placeholder="Password" required>
                         </div>
                         <div class="inputconatiner padding-bottom">
                             <label for="">TYPE OF ACCOUNT</label>
                             <div class="inputconatiner">
-                            <select required id="account_type">
+                            <select required id="account_type" required>
                                 <option value="">Please select Account Type</option>
                                 <option value="">Account Type</option>
                                 <option value="Checking Account">Checking Account</option>
@@ -425,11 +455,12 @@
                 </div>
         
                     <div class="actionbtns">
-                        <a onclick="Signup()" class="button signinbtn">Sign Up
+                        <a onclick="Signup(); validate_signup()" class="button signinbtn">Sign Up
                             <i class='bx bx-right-arrow-alt' id="arrow" ></i>
                             <i class='bx bx-loader-alt bx-spin bx-rotate-90' style="display: none;" id="spin"></i>
                         </a>
                     </div>
+                </form>
         
                     <div class="links">
                         <a href="/forgot">Forgot your password </a> <br>
