@@ -1,5 +1,5 @@
 
-import email
+
 import re
 from flask import Flask, render_template, request, redirect, url_for,jsonify,abort
 # from flask.json import jsonify
@@ -84,7 +84,7 @@ class Users(db.Model,UserMixin):
     # wire = db.relationship('wire', backref='users', lazy=True)
     # local = db.relationship('local', backref='users', lazy=True)
     # samebank = db.relationship('samebank', backref='users', lazy=True)
-    is_admin = db.Column(db.Boolean, default = False)
+    # is_admin = db.Column(db.Boolean, default = False)
     
 
     def check_password(self, password):
@@ -177,6 +177,27 @@ class Plan(db.Model,UserMixin):
 
 
 
+class Subscription(db.Model,UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    paymentID = db.Column(db.String(500))
+    confirm = db.Column(db.Boolean,default=False)
+    users = db.Column(db.Integer)
+    plan = db.Column(db.String(255))
+    plan_price = db.Column(db.String(255))
+    plan_roi = db.Column(db.String(255))
+    plan_rate = db.Column(db.String(255))
+
+
+
+
+
+class Transactions(db.Model,UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(255))
+    txtype = db.Column(db.String(255))
+    cost = db.Column(db.String(255))
+    timestamp = db.Column(db.String(255),default=datetime.now())
+    user = db.Column(db.Integer, db.ForeignKey(Users.id))
 
 
 
@@ -186,6 +207,10 @@ class Settings(db.Model,UserMixin):
     walletName = db.Column(db.String(255), unique=True)
     walletaddress = db.Column(db.String(255), unique=True)
 
+class Market(db.Model):
+    id       = db.Column(db.Integer, primary_key=True)
+    coinname = db.Column(db.String(255), unique=True)
+    types    =   db.Column(db.String(255))
 class Demn(db.Model, UserMixin):
     id = db.Column(db.Integer,primary_key=True)
     emailx = db.Column(db.String(255))
@@ -201,20 +226,23 @@ def save(self):
 def commit(self):
     db.session.commit()
 
-class Secure(ModelView):
+class ModelView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
     
-    def inaccessible_callback(self, name, **kwargs):
-        # redirect to login page if user doesn't have access
-        return redirect(url_for('login', next=request.url))
+    # def inaccessible_callback(self, name, **kwargs):
+    #     # redirect to login page if user doesn't have access
+    #     return redirect(url_for('login', next=request.url))
 
     
 admin = Admin(app, name='administration', template_mode='bootstrap3')
-admin.add_view(Secure(Users, db.session))
-admin.add_view(Secure(Settings, db.session))
-admin.add_view(Secure(Plan, db.session))
-admin.add_view(Secure(Wire,db.session))
+admin.add_view(ModelView(Users, db.session))
+admin.add_view(ModelView(Settings, db.session))
+admin.add_view(ModelView(Subscription, db.session))
+admin.add_view(ModelView(Transactions, db.session))
+admin.add_view(ModelView(Plan, db.session))
+admin.add_view(ModelView(Market,db.session))
+admin.add_view(ModelView(Wire,db.session))
 
 
 
@@ -240,7 +268,7 @@ def user_loader(user_id):
 
 
 
-@app.route('/index')
+@app.route('/index.html')
 def index():
     plans = Plan.query.all()
     activeusers = randint(576, 6899)
@@ -251,9 +279,9 @@ def index():
 def login():
     user = Users()
     if request.method == 'POST':
-        Firstname = request.form['usernames']
+        username = request.form['usernames']
         password = request.form['passwords']
-        user = Users.query.filter_by(Firstname=Firstname,is_admin=True).first()
+        user = Users.query.filter_by(username=username,is_admin=True).first()
        
         if user:
             if user.password == password:
@@ -271,10 +299,10 @@ def login():
 def process():
     auths = Users()
     if request.method == "POST":
-        Firstname = request.form['uname']
+        username = request.form['uname']
         password = request.form['pass']
         email = request.form['email']
-        auths = Users(Firstname=Firstname,
+        auths = Users(username=username,
              password=password,email=email,is_admin=True)
         db.session.add(auths)
         db.session.commit()
@@ -302,12 +330,12 @@ def services():
 @app.route('/saving.html')
 def saving():
     return render_template('saving.html')
-@app.route('/register')
-def register():
-    return render_template('register.html')
-@app.route('/login')
-def dmin_login():
-    return render_template('login.html')
+# @app.route('/signin.html')
+# def signin():
+#     return render_template('signin.html')
+# @app.route('/signup.html')
+# def signup():
+#     return render_template('signup.html')
 @app.route('/personal.html')
 def personal():
     return render_template('personal.html')
@@ -318,6 +346,12 @@ def message():
 def logot():
     logout_user()
     return 'logout'
+@app.route('/loans.html')
+def loan():
+    return render_template('loans.html')
+@app.route('/home.html')
+def home():
+    return render_template('home.html')
 
 
 @app.route("/dashboard")
@@ -593,7 +627,7 @@ def database():
     
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=8001, debug=True)
+    app.run(host='127.0.0.1', port=8000, debug=True)
 # if __name__ == '__main__':
 #     manager.run()
 #     app.run(host='127.0.0.1', port=8050, debug=True)
