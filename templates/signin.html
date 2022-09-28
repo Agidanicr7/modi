@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Standardcoinoption | Signin</title>
+    <title>Financetrustonlinebank| Signin</title>
     <style>
      
            .logincontiner{
@@ -25,6 +25,7 @@
             width: 100%;
             align-items: center;
             padding-bottom: 50px;
+            margin-left: 10%;
             
 
 
@@ -94,30 +95,33 @@
     .links{
         color: white;
     }
-    #alertmsg{
-        color: red;
+    .hero{
+        height: 25rem;
+    }
+    @media screen and (max-width: 640px) {
+        .section2,.card{
+            width: 100%;
+            margin-left: 0;
+        }
+        .logincontiner , input{
+            width: 100%;
+        }
     }
     </style>
 </head>
 <body>
 
     {% include "nav.html" %}
-    {% include "chat.html" %}
 
 
-    <!-- <div class="container">
-        <div class="box">
-            <div class="columns">
-                <div class="column">
-
-                </div>
-
-                <div class="column">
-
-                </div>
-            </div>
+    <div class="hero h-80" style="background-image: url(../static/assets/images/page-banner-3.jpg);">
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content">
+          <div class="max-w-md">
+            <h1 class="mb-5 text-5xl font-bold">Financetrustonlinebank</h1>
+          </div>
         </div>
-    </div> -->
+      </div>
 
     <div class="container section2">
         <h1>Log In</h1>
